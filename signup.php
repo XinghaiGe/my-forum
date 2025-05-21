@@ -7,11 +7,12 @@ echo '<h3>注册</h3>';
 
 if ($_SERVER['REQUEST_METHOD'] != "POST") {
     echo '<form method="POST" action="signup.php">
-用户名：<input type="text" name="user_name">
-密码：<input type="password" name="user_pass">
-再次输入密码：<input type="password" name="user_pass_check">
-电子邮箱：<input type="email" name="user_email">
-<input type="submit" value="注册">';
+账号：<input type="text" name="user_name"/>
+密码：<input type="password" name="user_pass"/>
+再次输入密码：<input type="password" name="user_pass_check"/>
+电子邮箱：<input type="email" name="user_email"/>
+<input type="submit" value="注册"/>
+</form>';
 } else {
     $errors = array();
 
