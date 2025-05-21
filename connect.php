@@ -1,5 +1,7 @@
 <?php
 // connect.php
+
+// 配置数据库连接参数
 $server = 'localhost:3306';
 $username = 'root';
 $password = '123.com';
