@@ -15,3 +15,5 @@ if (!$conn) {
 if (!mysqli_select_db($conn, $database)) {
     exit('Error: 无法选择数据库.');
 }
+
+$_SESSION['conn'] = $conn;
