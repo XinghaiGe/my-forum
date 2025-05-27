@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html PUBLIC "-//W3c//DTD XHTML 1.0 Strict//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
@@ -12,21 +15,19 @@
 <h1>我的论坛</h1>
 <div id="wrapper">
     <div id="menu">
-        <a class="item" href="/forum/index.php">首页</a>
-        <a class="item" href="/forum/create_topic.php">创建主题</a>
-        <a class="item" href="/forum/create_cat.php">创建分类</a>
+        <a class="item" href="/my-forum/index.php">首页</a>
+        <a class="item" href="/my-forum/create_topic.php">创建主题</a>
+        <a class="item" href="/my-forum/create_cat.php">创建分类</a>
+
 
         <div id="userbar">
             <?php
-            $error = false;
-
-            if ($error == false) {
-                echo '<div id="content">some text</div>';
+            if ($_SESSION['signed_in']) {
+                echo '你好 ' . $_SESSION['user_name'] . '。如果不是你，请<a href="signout.php">退出登录<a>';
             } else {
-                // bad looking
+                echo '<a href="signin.php">登录</a>或<a href="signup.php">注册</a>';
             }
             ?>
-            你好。不是你？退出
         </div>
     </div>
     <div id="content">
