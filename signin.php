@@ -1,10 +1,10 @@
 <?php
 //signin.php
-include 'connect.php';
 include 'header.php';
+include 'connect.php';
 // 检查用户是否已登录，已登录则不显示表单
 if (isset($_SESSION['signed_in']) && $_SESSION['signed_in']) {
-    echo '您已登录，您可以<a href="signout.php>退出登录</a>';
+    echo '您已登录，您可以<a href="signout.php">退出登录</a>';
 } else {
     if ($_SERVER['REQUEST_METHOD'] != 'POST') {
         echo '<form method="POST" action="signin.php">

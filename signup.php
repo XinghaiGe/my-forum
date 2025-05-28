@@ -1,7 +1,7 @@
 <?php
 // signup.php
-include 'connect.php';
 include 'header.php';
+include 'connect.php';
 
 echo '<h3>注册</h3>';
 
