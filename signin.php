@@ -2,6 +2,8 @@
 //signin.php
 include 'header.php';
 include 'connect.php';
+global $conn;
+
 // 已登录，不显示表单
 if (isset($_SESSION['signed_in']) && $_SESSION['signed_in']) {
     echo '您已登录，您可以<a href="signout.php">退出登录</a>';
@@ -63,7 +65,7 @@ if (!empty($errors)) {
 // 尝试登录
 $sql = "SELECT user_id, user_name, user_pass, user_level FROM users WHERE user_name = ? AND user_pass = ?";
 
-$stmt = mysqli_prepare($_SESSION['conn'], $sql);
+$stmt = mysqli_prepare($conn, $sql);
 
 $user_name = $_POST['user_name'];
 $user_pass = sha1($_POST['user_pass']); // 加密存储密码

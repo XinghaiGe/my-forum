@@ -2,6 +2,7 @@
 // create_topic.php
 include 'header.php';
 include 'connect.php';
+global $conn;
 
 echo '<h2>创建主题</h2>';
 
@@ -15,7 +16,7 @@ if (!$_SESSION['signed_in']) {
 // 未提交，展示表单
 if ($_SERVER['REQUEST_METHOD'] != "POST") {
     $sql = "SELECT cat_id,cat_name,cat_description FROM categories";
-    $result = mysqli_query($_SESSION['conn'], $sql);
+    $result = mysqli_query($conn, $sql);
 
     if (!$result) {
         echo '错误：数据库查询失败';
@@ -44,46 +45,46 @@ if ($_SERVER['REQUEST_METHOD'] != "POST") {
 }
 
 // 已登录，提交表单
-mysqli_begin_transaction($_SESSION['conn']);
+mysqli_begin_transaction($conn);
 $query = "BEGIN WORK;";
-$result = mysqli_query($_SESSION['conn'], $query);
+$result = mysqli_query($conn, $query);
 if (!$result) {
     echo '创建主题失败，请稍后重试';
     include 'footer.php';
     exit;
 }
 
-$topic_subject = mysqli_real_escape_string($_SESSION['conn'], $_POST['topic_subject']);
-$topic_cat = mysqli_real_escape_string($_SESSION['conn'], $_POST['topic_cat']);
+$topic_subject = mysqli_real_escape_string($conn, $_POST['topic_subject']);
+$topic_cat = mysqli_real_escape_string($conn, $_POST['topic_cat']);
 $topic_by = $_SESSION['user_id'];
 
 $sql = "INSERT INTO topics(topic_subject,topic_date,topic_cat,topic_by)
 VALUES('$topic_subject',NOW(),'$topic_cat','$topic_by')";
 
-$result = mysqli_query($_SESSION['conn'], $sql);
+$result = mysqli_query($conn, $sql);
 
 if (!$result) {
-    echo '数据插入失败，请稍后重试。' . mysqli_error($_SESSION['conn']);
+    echo '数据插入失败，请稍后重试。' . mysqli_error($conn);
     $sql = "ROLLBACK;";
-    $result = mysqli_query($_SESSION['conn'], $sql);
+    $result = mysqli_query($conn, $sql);
 } else {
-    $topicid = mysqli_insert_id($_SESSION['conn']);
-    $post_content = mysqli_real_escape_string($_SESSION['conn'], $_POST['post_content']);
+    $topicid = mysqli_insert_id($conn);
+    $post_content = mysqli_real_escape_string($conn, $_POST['post_content']);
     $post_topic = $topicid;
     $post_by = $_SESSION['user_id'];
 
     $sql = "INSERT INTO posts(post_content, post_date, post_topic, post_by) 
 VALUES ('$post_content', NOW(), '$post_topic', '$post_by' )";
 
-    $result = mysqli_query($_SESSION['conn'], $sql);
+    $result = mysqli_query($conn, $sql);
 
     if (!$result) {
-        echo '帖子失败，请稍后重试' . mysqli_error($_SESSION['conn']);
+        echo '帖子失败，请稍后重试' . mysqli_error($conn);
         $sql = "ROLLBACK;";
-        $result = mysqli_query($_SESSION['conn'], $sql);
+        $result = mysqli_query($conn, $sql);
     } else {
         $sql = "COMMIT;";
-        $result = mysqli_query($_SESSION['conn'], $sql);
+        $result = mysqli_query($conn, $sql);
         //after a lot of work, the query succeeded!
         echo '创建 <a href="topic.php?id=' . $topicid . '">新主题</a>.成功';
     }

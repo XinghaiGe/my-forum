@@ -2,6 +2,7 @@
 //index.php
 include 'header.php';
 include 'connect.php';
+global $conn;
 
 $sql = "SELECT 
 cat_id, 
@@ -10,7 +11,7 @@ cat_description
 FROM 
 categories";
 
-$result = mysqli_query($_SESSION['conn'], $sql);
+$result = mysqli_query($conn, $sql);
 
 // 查询失败
 if (!$result) {

@@ -1,18 +1,20 @@
 <?php
 include 'header.php';
 include 'connect.php';
+global $conn;
+
 $sql = 'SELECT 
     cat_id,cat_name,cat_description 
 FROM 
     categories 
 WHERE 
-    cat_id = ' . mysqli_real_escape_string($_SESSION['conn'], $_GET['cat_id']);
+    cat_id = ' . mysqli_real_escape_string($conn, $_GET['cat_id']);
 
-$result = mysqli_query($_SESSION['conn'], $sql);
+$result = mysqli_query($conn, $sql);
 
 // 查询失败
 if (!$result) {
-    echo '无法显示分类，请重试' . mysqli_error($_SESSION['conn']);
+    echo '无法显示分类，请重试' . mysqli_error($conn);
     include "footer.php";
     exit;
 }
@@ -33,12 +35,12 @@ $sql = "SELECT
 FROM 
     topics 
 WHERE 
-    topic_cat = " . mysqli_real_escape_string($_SESSION['conn'], $_GET['cat_id']);
+    topic_cat = " . mysqli_real_escape_string($conn, $_GET['cat_id']);
 
-$result = mysqli_query($_SESSION['conn'], $sql);
+$result = mysqli_query($conn, $sql);
 
 if (!$result) {
-    echo '无法显示主题，请重试' . mysqli_error($_SESSION['conn']);
+    echo '无法显示主题，请重试' . mysqli_error($conn);
 } else {
     echo '<table>
 <tr>

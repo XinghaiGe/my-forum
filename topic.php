@@ -1,13 +1,15 @@
 <?php
 include 'header.php';
 include 'connect.php';
-$sql = 'SELECT topic_id,topic_subject FROM topics WHERE topics.topic_id = ' . mysqli_real_escape_string($_SESSION['conn'], $_GET['topic_id']);
+global $conn;
 
-$result = mysqli_query($_SESSION['conn'], $sql);
+$sql = 'SELECT topic_id,topic_subject FROM topics WHERE topics.topic_id = ' . mysqli_real_escape_string($conn, $_GET['topic_id']);
+
+$result = mysqli_query($conn, $sql);
 
 // 主题查询失败
 if (!$result) {
-    echo '无法显示主题，请重试' . mysqli_error($_SESSION['conn']);
+    echo '无法显示主题，请重试' . mysqli_error($conn);
     include 'footer.php';
     exit;
 }
@@ -28,11 +30,11 @@ $posts_sql = "SELECT
     posts.post_topic,posts.post_content,posts.post_date,posts.post_by,users.user_id,users.user_name
 FROM posts 
 LEFT JOIN users ON posts.post_by = users.user_id 
-WHERE posts.post_topic=" . mysqli_real_escape_string($_SESSION['conn'], $_GET['topic_id']);
+WHERE posts.post_topic=" . mysqli_real_escape_string($conn, $_GET['topic_id']);
 
-$posts_result = mysqli_query($_SESSION['conn'], $posts_sql);
+$posts_result = mysqli_query($conn, $posts_sql);
 if (!$posts_result) {
-    echo '无法显示主题下的帖子，请重试' . mysqli_error($_SESSION['conn']);
+    echo '无法显示主题下的帖子，请重试' . mysqli_error($conn);
 } else {
     echo '<table>
 <tr>
@@ -56,7 +58,7 @@ if (!$_SESSION['signed_in']) {
     echo '<tr><td colspan=2><a href="signin.php">登录</a>以回复. 你也可以<a href="signup.php">注册</a>新账号.';
 } else {
     echo '<tr><td colspan="2"><h2>回复：</h2><br />
-					<form method="post" action="reply.php?id=' . mysqli_fetch_assoc(mysqli_query($_SESSION['conn'], $sql))['topic_id'] . '">
+					<form method="post" action="reply.php?id=' . mysqli_fetch_assoc(mysqli_query($conn, $sql))['topic_id'] . '">
 						<textarea name="post-content"></textarea>
 						<input type="submit" value="回复" />
 					</form></td></tr>';

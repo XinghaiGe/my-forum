@@ -2,6 +2,7 @@
 // signup.php
 include 'header.php';
 include 'connect.php';
+global $conn;
 
 echo '<h3>注册</h3>';
 
@@ -55,7 +56,7 @@ if (!empty($errors)) {
 // 保存注册账号到数据库
 $sql = "INSERT INTO users(user_name, user_pass, user_email, user_date, user_level) VALUES (?,?,?,NOW(),0)";
 
-$stmt = mysqli_prepare($_SESSION['conn'], $sql);
+$stmt = mysqli_prepare($conn, $sql);
 
 $user_name = $_POST['user_name'];
 $user_pass = sha1($_POST['user_pass']);

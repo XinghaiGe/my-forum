@@ -2,6 +2,7 @@
 // create_cat.php
 include 'header.php';
 include 'connect.php';
+global $conn;
 
 if ($_SERVER['REQUEST_METHOD'] != "POST") {
     echo '<form method="post" action="">
@@ -15,13 +16,13 @@ if ($_SERVER['REQUEST_METHOD'] != "POST") {
 
     $sql = "INSERT INTO categories (cat_name, cat_description) VALUES (?,?)";
 
-    $stmt = mysqli_prepare($_SESSION['conn'], $sql);
+    $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, "ss", $cat_name, $cat_description);
 
     $result = mysqli_stmt_execute($stmt);
 
     if (!$result) {
-        echo 'Error: ' . mysqli_error($_SESSION['conn']);
+        echo 'Error: ' . mysqli_error($conn);
     } else {
         echo '添加类别成功';
     }
