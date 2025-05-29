@@ -2,15 +2,36 @@
 
 ### 环境
 + php 8.4.7
++ MySQL 8.0
 
+### 文件目录结构
 
+| 文件名                  | 文件功能    |
+|----------------------|---------|
+| index.php            | 首页      |
+| captcha.php          | 生成验证码   |
+| db_forum.sql         | 数据库脚本   |
+| connect.php          | 数据库连接配置 |
+| FiraCode-Regular.ttf | 验证码字体文件 |
+| category.php         | 展示分类    |
+| create_cat.php       | 创建分类    |
+| create_topic.php     | 创建主题    |
+| header.php           | 全局页眉    |
+| footer.php           | 全局页脚    |
+| reply.php            | 回帖功能    |
+| signin.php           | 登录功能    |
+| signout.php          | 登出功能    |
+| signup.php           | 注册功能    |
+| topic.php            | 展示主题    |
+| test.php             | 环境测试    |
+| style.css            | 样式文件    |
+| README.md            | 说明文件    |
 
 ### 作用
 
 了解从前后端不分离到前后端分离的历史演变
 
 体会php在小型项目快速交付的优势
-
 
 
 ### 任务
@@ -21,7 +42,7 @@
 
 + [x] 使用占位符占位+参数绑定的方法，防范 SQL 注入（SET VALUES WHERE 语句）
 
-+ [x] [图片验证码](https://www.php.cn/faq/607932.html) 
++ [x] [加入图片验证码](https://www.php.cn/faq/607932.html) 
 
 + [ ] 上传图片
 
