@@ -5,9 +5,9 @@ include 'connect.php';
 
 if ($_SERVER['REQUEST_METHOD'] != "POST") {
     echo '<form method="post" action="">
-    类别名称：<input type="text" name="cat_name"/>
-    类别描述：<textarea name="cat_description"></textarea>
-    <input type="submit" value="添加类别">
+类别名称：<input type="text" name="cat_name"/>
+类别描述：<textarea name="cat_description"></textarea>
+<input type="submit" value="添加类别">
 </form>';
 } else {
     $cat_name = $_POST['cat_name'];
