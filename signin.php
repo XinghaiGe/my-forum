@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
     echo '<form method="POST" action="signin.php">
 账号：<input type="text" name="user_name">
 密码：<input type="password" name="user_pass">
+验证码：<input type="text" name="captcha"><img src="captcha.php" alt="captcha">
 <input type="submit" value="登录"/>
 </form>';
     include 'footer.php';
@@ -32,6 +33,19 @@ if (!isset($_POST['user_name'])) {
 if (!isset($_POST['user_pass'])) {
     $errors[] = '密码不能为空';
 }
+
+
+// 获取用户输入的验证码字符串
+$user_input = $_POST['captcha'];
+
+// 获取保存在session中的验证码字符串
+$server_code = $_SESSION['captcha'];
+
+// 验证用户输入的验证码与保存的验证码是否一致
+if (strcasecmp($user_input, $server_code) != 0) {
+    $errors[] = "验证码错误";
+}
+
 
 // 数据不合法报错
 if (!empty($errors)) {
