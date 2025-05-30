@@ -27,7 +27,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 }
 
 $posts_sql = "SELECT 
-    posts.post_topic,posts.post_content,posts.post_date,posts.post_by,users.user_id,users.user_name
+    posts.post_id, posts.post_topic,posts.post_content,posts.post_date,posts.post_by,users.user_id,users.user_name
 FROM posts 
 LEFT JOIN users ON posts.post_by = users.user_id 
 WHERE posts.post_topic=" . mysqli_real_escape_string($conn, $_GET['topic_id']);
@@ -40,6 +40,7 @@ if (!$posts_result) {
 <tr>
 <th>用户名/发表时间</th>
 <th>帖子内容</th>
+<th>操作</th>
 </tr>';
     while ($posts_row = mysqli_fetch_assoc($posts_result)) {
         echo '<tr>';
@@ -48,6 +49,16 @@ if (!$posts_result) {
         echo '</td>';
         echo '<td class="rightpart">';
         echo $posts_row['post_content'];
+        echo '</td>';
+        echo '<td class="menupart">';
+        // todo 管理员可以更新/删除所有帖子，普通用户只能更新/删除自己的
+        if ($_SESSION['user_level'] === 1 || $_SESSION['user_name'] === $posts_row['user_name']) {
+            echo '<a href="update_post.php?post_id=' . $posts_row['post_id'] . '">更新</a>';
+            echo '<br />';
+            echo '<a href="deletepost.php?post_id=' . $posts_row['post_id'] . '">删除</a>';
+        } else {
+            echo '无权限操作';
+        }
         echo '</td>';
         echo '</tr>';
     }

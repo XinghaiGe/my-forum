@@ -34,7 +34,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     echo '<h3><a href="category.php?cat_id=' . $row['cat_id'] . '">' . $row['cat_name'] . '</a></h3>' . $row['cat_description'];
     echo '</td>';
     echo '<td class="rightpart">';
-    echo '<a href="topic.php?topic_id="Topic subject</a> at 10-10';
+    echo '<a href="topic.php?topic_id="</a>';
     echo '</td>';
     echo '</tr>';
 }
