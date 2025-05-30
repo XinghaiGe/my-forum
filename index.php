@@ -27,8 +27,10 @@ if (mysqli_num_rows($result) == 0) {
     exit;
 }
 
+echo '<table>';
 // 查询成功，展示分类列表
 while ($row = mysqli_fetch_assoc($result)) {
+
     echo '<tr>';
     echo '<td class="leftpart">';
     echo '<h3><a href="category.php?cat_id=' . $row['cat_id'] . '">' . $row['cat_name'] . '</a></h3>' . $row['cat_description'];
@@ -38,5 +40,6 @@ while ($row = mysqli_fetch_assoc($result)) {
     echo '</td>';
     echo '</tr>';
 }
+echo '</table>';
 
 include 'footer.php';
