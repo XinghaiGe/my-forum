@@ -1,7 +1,7 @@
 # 论坛 [forum-from-scratch](https://code.tutsplus.com/how-to-create-a-phpmysql-powered-forum-from-scratch--net-10188t)
 
 ### 环境
-+ php 8.4.7
++ PHP 8.4.7
 + MySQL 8.0
 
 ### 文件目录结构
@@ -51,4 +51,3 @@
 + [ ] 帖子删除
 
 + [ ] 阻止用户在发文章或评论时输入带 HTML 或 JavaScript 的内容
-  
