@@ -55,7 +55,7 @@ if (!$posts_result) {
         if ($_SESSION['user_level'] === 1 || $_SESSION['user_name'] === $posts_row['user_name']) {
             echo '<a href="update_post.php?post_id=' . $posts_row['post_id'] . '">更新</a>';
             echo '<br />';
-            echo '<a href="deletepost.php?post_id=' . $posts_row['post_id'] . '">删除</a>';
+            echo '<a href="delete_post.php?post_id=' . $posts_row['post_id'] . '">删除</a>';
         } else {
             echo '无权限操作';
         }
