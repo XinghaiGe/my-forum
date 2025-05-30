@@ -14,7 +14,9 @@ if ($_SERVER['REQUEST_METHOD'] != "POST") {
 // 插入回帖到数据库
 $sql = "INSERT INTO posts(post_content, post_date, post_topic, post_by) VALUES (?, NOW(), ?, ?)";
 $stmt = mysqli_prepare($conn, $sql);
-mysqli_stmt_bind_param($stmt, "sss", $_POST['post-content'], $_GET['id'], $_SESSION['user_id']);
+$pre_post_content = $_POST["post-content"];
+$post_content = htmlspecialchars($pre_post_content, ENT_QUOTES, 'UTF-8');
+mysqli_stmt_bind_param($stmt, "sss", $post_content, $_GET['id'], $_SESSION['user_id']);
 mysqli_stmt_execute($stmt);
 
 if (mysqli_stmt_errno($stmt)) {

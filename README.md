@@ -50,7 +50,7 @@
 
 + [x] 帖子删除
 
-+ [ ] 阻止用户在发文章或评论时输入带 HTML 或 JavaScript 的内容
++ [x] 阻止用户在发文章或评论时输入带 HTML 或 JavaScript 的内容，使用htmlspecialchars过滤
 
 ### 部署
 + 云数据库 sqlpub

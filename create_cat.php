@@ -11,8 +11,8 @@ if ($_SERVER['REQUEST_METHOD'] != "POST") {
 <input type="submit" value="添加类别">
 </form>';
 } else {
-    $cat_name = $_POST['cat_name'];
-    $cat_description = $_POST['cat_description'];
+    $cat_name = htmlspecialchars($_POST['cat_name'], ENT_QUOTES, 'UTF-8');
+    $cat_description = htmlspecialchars($_POST['cat_description'], ENT_QUOTES, 'UTF-8');
 
     $sql = "INSERT INTO categories (cat_name, cat_description) VALUES (?,?)";
 
