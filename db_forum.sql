@@ -76,3 +76,8 @@ INSERT INTO posts (post_content, post_date, post_topic, post_by) VALUES
                                                                      ('我推荐去郊外爬山，亲近大自然。', NOW(), 3, 4),
                                                                      ('建议增加夜间模式，保护眼睛。', NOW(), 4, 1),
                                                                      ('数据库优化有哪些技巧?', NOW(), 1, 3);
+
+ALTER TABLE posts ADD COLUMN post_pic MEDIUMBLOB COMMENT '存储帖子图片';
+
+INSERT INTO posts (post_content, post_date, post_topic, post_by, post_pic) VALUES
+                                                                               ('来学vb?', NOW(), 1, 3, LOAD_FILE('D:\Desktop\my-forum\example.jpg'));

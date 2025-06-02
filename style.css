@@ -109,17 +109,19 @@ h1 {
 
 /* 布局类 */
 .leftpart {
-    width: 30%;
+    width: 25%;
 }
 
 .rightpart {
-    width: 60%;
-    float: left;
+    width: 40%;
+}
+
+.picpart {
+    width: 20%;
 }
 
 .menupart {
-    width: 10%;
-    float: left;
+    width: 15%;
 }
 
 /* 页脚 */

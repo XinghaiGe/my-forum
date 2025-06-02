@@ -27,7 +27,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 }
 
 $posts_sql = "SELECT 
-    posts.post_id, posts.post_topic,posts.post_content,posts.post_date,posts.post_by,users.user_id,users.user_name
+    posts.post_id, posts.post_topic,posts.post_content,posts.post_date,posts.post_by, posts.post_pic, users.user_id,users.user_name
 FROM posts 
 LEFT JOIN users ON posts.post_by = users.user_id 
 WHERE posts.post_topic=" . mysqli_real_escape_string($conn, $_GET['topic_id']);
@@ -40,6 +40,7 @@ if (!$posts_result) {
 <tr>
 <th>用户名/发表时间</th>
 <th>帖子内容</th>
+<th>图片附件</th>
 <th>操作</th>
 </tr>';
     while ($posts_row = mysqli_fetch_assoc($posts_result)) {
@@ -49,6 +50,18 @@ if (!$posts_result) {
         echo '</td>';
         echo '<td class="rightpart">';
         echo $posts_row['post_content'];
+        echo '</td>';
+        echo '<td class="picpart">';
+        // 转换二进制的 $post_row['post_pic'] 并显示
+        echo 'pic';
+        if (!empty($posts_row['post_pic'])) {
+            echo 'pic';
+            $image =  $posts_row['post_pic'];
+            header('Content-Type: image/png');
+            imagepng($image);
+            imagedestroy($image);
+        }
+        echo '</td>';
         echo '</td>';
         echo '<td class="menupart">';
         // todo 管理员可以更新/删除所有帖子，普通用户只能更新/删除自己的
