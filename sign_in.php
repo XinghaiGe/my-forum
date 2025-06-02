@@ -1,19 +1,19 @@
 <?php
-//signin.php
+//sign_in.php
 include 'header.php';
 include 'connect.php';
 global $conn;
 
 // 已登录，不显示表单
 if (isset($_SESSION['signed_in']) && $_SESSION['signed_in']) {
-    echo '您已登录，您可以<a href="signout.php">退出登录</a>';
+    echo '您已登录，您可以<a href="sign_out.php">退出登录</a>';
     include 'footer.php';
     exit;
 }
 
 // 未提交表单，展示表单
 if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-    echo '<form method="POST" action="signin.php">
+    echo '<form method="POST" action="sign_in.php">
 账号：<input type="text" name="user_name">
 密码：<input type="password" name="user_pass">
 验证码：<input type="text" name="captcha"><img src="captcha.php" alt="captcha">

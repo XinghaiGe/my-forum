@@ -1,5 +1,5 @@
 <?php
-// signup.php
+// sign_up.php
 include 'header.php';
 include 'connect.php';
 global $conn;
@@ -8,7 +8,7 @@ echo '<h3>注册</h3>';
 
 // 未提交表单，显示登录表单
 if ($_SERVER['REQUEST_METHOD'] != "POST") {
-    echo '<form method="POST" action="signup.php">
+    echo '<form method="POST" action="sign_up.php">
 账号：<input type="text" name="user_name"/>
 密码：<input type="password" name="user_pass"/>
 再次输入密码：<input type="password" name="user_pass_check"/>
@@ -68,7 +68,7 @@ $result = mysqli_stmt_execute($stmt);
 if (!$result) {
     echo '注册失败，请重试';
 } else {
-    echo '注册成功。你现在可以<a href="signin.php">登录</a>>发帖了！';
+    echo '注册成功。你现在可以<a href="sign_in.php">登录</a>>发帖了！';
 }
 
 

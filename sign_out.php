@@ -10,7 +10,7 @@ if ($_SESSION['signed_in']) {
 
     echo '退出登录成功';
 } else {
-    echo '当前未登录，<a href="signin.php">登录</a>?';
+    echo '当前未登录，<a href="sign_in.php">登录</a>?';
 }
 
 include 'footer.php';

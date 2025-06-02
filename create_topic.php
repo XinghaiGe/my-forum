@@ -8,7 +8,7 @@ echo '<h2>创建主题</h2>';
 
 // 未登录
 if (!$_SESSION['signed_in']) {
-    echo '请<a href="/my-forum/signin.php">登录</a>后创建话题';
+    echo '请<a href="/my-forum/sign_in.php">登录</a>后创建话题';
     include 'footer.php';
     exit;
 }

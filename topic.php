@@ -79,7 +79,7 @@ if (!$posts_result) {
 
 // 确保是登录状态才可以回帖
 if (!$_SESSION['signed_in']) {
-    echo '<tr><td colspan=2><a href="signin.php">登录</a>以回复. 你也可以<a href="signup.php">注册</a>新账号.';
+    echo '<tr><td colspan=2><a href="sign_in.php">登录</a>以回复. 你也可以<a href="sign_up.php">注册</a>新账号.';
 } else {
     echo '<tr><td colspan="2"><h2>回复：</h2><br />
 					<form method="post" action="reply.php?id=' . mysqli_fetch_assoc(mysqli_query($conn, $sql))['topic_id'] . '">

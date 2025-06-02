@@ -23,9 +23,9 @@ session_start();
         <div id="userbar">
             <?php
             if ($_SESSION['signed_in']) {
-                echo '你好 ' . $_SESSION['user_name'] . '。如果不是你，请<a href="signout.php">退出登录<a>';
+                echo '你好 ' . $_SESSION['user_name'] . '。如果不是你，请<a href="sign_out.php">退出登录<a>';
             } else {
-                echo '<a href="signin.php">登录</a>或<a href="signup.php">注册</a>';
+                echo '<a href="sign_in.php">登录</a>或<a href="sign_up.php">注册</a>';
             }
             ?>
         </div>
